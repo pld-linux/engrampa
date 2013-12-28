@@ -28,7 +28,7 @@ BuildRequires:	mate-common
 BuildRequires:	mate-doc-utils
 %{?with_caja:BuildRequires:	mate-file-manager-devel >= 1.1.0}
 BuildRequires:	pkgconfig
-BuildRequires:	rpmbuild(find_lang) >= 1.23
+BuildRequires:	rpmbuild(find_lang) >= 1.36
 BuildRequires:	rpmbuild(macros) >= 1.311
 BuildRequires:	scrollkeeper
 BuildRequires:	tar >= 1:1.22
