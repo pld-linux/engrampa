@@ -8,7 +8,7 @@ Summary(pl.UTF-8):	Engrampa - zarządca archiwów dla środowiska MATE
 Summary(pt_BR.UTF-8):	Engrampa - gerenciador de arquivos compactados para o MATE
 Name:		mate-file-archiver
 Version:	1.6.0
-Release:	1
+Release:	2
 License:	GPL v2+
 Group:		X11/Applications
 Source0:	http://pub.mate-desktop.org/releases/1.6/%{name}-%{version}.tar.xz
@@ -40,8 +40,8 @@ Requires(post,postun):	gtk-update-icon-cache
 Requires(post,postun):	hicolor-icon-theme
 Requires(post,postun):	scrollkeeper
 Requires:	glib2 >= 1:2.26.0
-%{!?with_gtk3:Requires:	gtk+2-devel >= 2:2.22.0}
-%{?with_gtk3:Requires:	gtk+3-devel >= 3.0.0}
+%{!?with_gtk3:Requires:	gtk+2 >= 2:2.22.0}
+%{?with_gtk3:Requires:	gtk+3 >= 3.0.0}
 Suggests:	bzip2
 Suggests:	gzip
 Suggests:	p7zip
