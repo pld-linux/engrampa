@@ -7,12 +7,12 @@ Summary:	Engrampa - an archive manager for MATE
 Summary(pl.UTF-8):	Engrampa - zarządca archiwów dla środowiska MATE
 Summary(pt_BR.UTF-8):	Engrampa - gerenciador de arquivos compactados para o MATE
 Name:		mate-file-archiver
-Version:	1.6.0
-Release:	2
+Version:	1.6.1
+Release:	1
 License:	GPL v2+
 Group:		X11/Applications
 Source0:	http://pub.mate-desktop.org/releases/1.6/%{name}-%{version}.tar.xz
-# Source0-md5:	8a23b4504605473f790ed9b3f58bfe6e
+# Source0-md5:	d39a63d5e7d84c3ca2c810964837f9cc
 URL:		http://mate-desktop.org/
 BuildRequires:	autoconf >= 2.61
 BuildRequires:	automake >= 1:1.9
@@ -142,10 +142,11 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog MAINTAINERS NEWS README TODO
 %attr(755,root,root) %{_bindir}/engrampa
-%dir %{_libdir}/engrampa
-%attr(755,root,root) %{_libdir}/engrampa/isoinfo.sh
-%attr(755,root,root) %{_libdir}/engrampa/rpm2cpio
+%dir %{_libdir}/mate-file-archiver
+%attr(755,root,root) %{_libdir}/mate-file-archiver/isoinfo.sh
+%attr(755,root,root) %{_libdir}/mate-file-archiver/rpm2cpio
 %{_datadir}/engrampa
+%{_datadir}/mate-file-archiver
 %{_datadir}/glib-2.0/schemas/org.mate.engrampa.gschema.xml
 %{_desktopdir}/engrampa.desktop
 %{_iconsdir}/hicolor/*/apps/engrampa.*
