@@ -91,7 +91,6 @@ Rozszerzenie Engrampa (zarządca archiwów) dla zarządcy plików Caja.
 %setup -q
 
 %build
-mate-doc-prepare --copy --force
 %{__intltoolize}
 %{__libtoolize}
 %{__aclocal}
