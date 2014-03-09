@@ -1,18 +1,18 @@
 #
 # Conditional build:
-%bcond_without	caja	# Caja (mate-file-manager) support
+%bcond_without	caja	# Caja support
 %bcond_with	gtk3	# use GTK+ 3.x instead of 2.x
 #
 Summary:	Engrampa - an archive manager for MATE
 Summary(pl.UTF-8):	Engrampa - zarządca archiwów dla środowiska MATE
 Summary(pt_BR.UTF-8):	Engrampa - gerenciador de arquivos compactados para o MATE
-Name:		mate-file-archiver
-Version:	1.6.2
+Name:		engrampa
+Version:	1.8.0
 Release:	1
 License:	GPL v2+
 Group:		X11/Applications
-Source0:	http://pub.mate-desktop.org/releases/1.6/%{name}-%{version}.tar.xz
-# Source0-md5:	4160c1cace66fbcaac5ac2599179e99e
+Source0:	http://pub.mate-desktop.org/releases/1.8/%{name}-%{version}.tar.xz
+# Source0-md5:	4ba0f89d659cad4cad0fac40f1c7e899
 URL:		http://mate-desktop.org/
 BuildRequires:	autoconf >= 2.61
 BuildRequires:	automake >= 1:1.9
@@ -25,8 +25,7 @@ BuildRequires:	intltool >= 0.35.0
 BuildRequires:	libtool >= 1:1.4.3
 BuildRequires:	libxml2-progs
 BuildRequires:	mate-common
-BuildRequires:	mate-doc-utils
-%{?with_caja:BuildRequires:	mate-file-manager-devel >= 1.1.0}
+%{?with_caja:BuildRequires:	caja-devel >= 1.1.0}
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(find_lang) >= 1.36
 BuildRequires:	rpmbuild(macros) >= 1.311
@@ -52,6 +51,7 @@ Suggests:	unrar
 %endif
 Suggests:	tar
 Suggests:	zip
+Obsoletes:	mate-file-archiver
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -73,17 +73,18 @@ ambiente MATE. Com ele é possível criar arquivos, visualizar o
 conteúdo de arquivos existentes, visualizar um arquivo contido em um
 pacote e extrair os arquivos de um pacote.
 
-%package -n mate-file-manager-extension-engrampa
+%package -n caja-extension-engrampa
 Summary:	Engrampa (archive manager) extension for Caja (MATE file manager)
 Summary(pl.UTF-8):	Rozszerzenie Engrampa (zarządca archiwów) dla zarządcy plików Caja
 Group:		X11/Applications
 Requires:	%{name} = %{version}-%{release}
-Requires:	mate-file-manager >= 1.1.0
+Requires:	caja >= 1.1.0
+Obsoletes:	mate-file-manager-extension-engrampa
 
-%description -n mate-file-manager-extension-engrampa
+%description -n caja-extension-engrampa
 Engrampa (archive manager) extension for Caja (MATE file manager).
 
-%description -n mate-file-manager-extension-engrampa -l pl.UTF-8
+%description -n caja-extension-engrampa -l pl.UTF-8
 Rozszerzenie Engrampa (zarządca archiwów) dla zarządcy plików Caja.
 
 %prep
@@ -112,6 +113,7 @@ rm -rf $RPM_BUILD_ROOT
 	DESTDIR=$RPM_BUILD_ROOT
 
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/caja/extensions-2.0/*.la
+%{__rm} -r $RPM_BUILD_ROOT%{_localedir}/cmn
 
 # just a copy of ur
 %{__rm} -r $RPM_BUILD_ROOT%{_datadir}/locale/ur_PK
@@ -149,9 +151,10 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/glib-2.0/schemas/org.mate.engrampa.gschema.xml
 %{_desktopdir}/engrampa.desktop
 %{_iconsdir}/hicolor/*/apps/engrampa.*
+%{_mandir}/man1/engrampa.1*
 
 %if %{with caja}
-%files -n mate-file-manager-extension-engrampa
+%files -n caja-extension-engrampa
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/caja/extensions-2.0/libcaja-engrampa.so
 %endif
