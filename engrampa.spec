@@ -16,16 +16,17 @@ Source0:	http://pub.mate-desktop.org/releases/1.8/%{name}-%{version}.tar.xz
 URL:		http://mate-desktop.org/
 BuildRequires:	autoconf >= 2.61
 BuildRequires:	automake >= 1:1.9
+%{?with_caja:BuildRequires:	caja-devel >= 1.1.0}
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	gettext-devel >= 0.10.40
 BuildRequires:	glib2-devel >= 1:2.26.0
 %{!?with_gtk3:BuildRequires:	gtk+2-devel >= 2:2.22.0}
 %{?with_gtk3:BuildRequires:	gtk+3-devel >= 3.0.0}
 BuildRequires:	intltool >= 0.35.0
+BuildRequires:	json-glib-devel >= 0.14.0
 BuildRequires:	libtool >= 1:1.4.3
 BuildRequires:	libxml2-progs
 BuildRequires:	mate-common
-%{?with_caja:BuildRequires:	caja-devel >= 1.1.0}
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(find_lang) >= 1.36
 BuildRequires:	rpmbuild(macros) >= 1.311
@@ -41,6 +42,7 @@ Requires(post,postun):	scrollkeeper
 Requires:	glib2 >= 1:2.26.0
 %{!?with_gtk3:Requires:	gtk+2 >= 2:2.22.0}
 %{?with_gtk3:Requires:	gtk+3 >= 3.0.0}
+Requires:	json-glib >= 0.14.0
 Suggests:	bzip2
 Suggests:	gzip
 Suggests:	p7zip
@@ -112,7 +114,6 @@ rm -rf $RPM_BUILD_ROOT
 	DESTDIR=$RPM_BUILD_ROOT
 
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/caja/extensions-2.0/*.la
-%{__rm} -r $RPM_BUILD_ROOT%{_localedir}/cmn
 
 # just a copy of ur
 %{__rm} -r $RPM_BUILD_ROOT%{_datadir}/locale/ur_PK
@@ -122,20 +123,18 @@ rm -rf $RPM_BUILD_ROOT
 # mate < 1.5 did not exist in pld, avoid dependency on mate-conf
 %{__rm} $RPM_BUILD_ROOT%{_datadir}/MateConf/gsettings/engrampa.convert
 
-%find_lang engrampa --with-mate --with-omf
+%find_lang engrampa --with-mate
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %post
 %glib_compile_schemas
-%scrollkeeper_update_post
 %update_desktop_database_post
 %update_icon_cache hicolor
 
 %postun
 %glib_compile_schemas
-%scrollkeeper_update_postun
 %update_desktop_database_postun
 %update_icon_cache hicolor
 
