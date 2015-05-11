@@ -7,21 +7,21 @@ Summary:	Engrampa - an archive manager for MATE
 Summary(pl.UTF-8):	Engrampa - zarządca archiwów dla środowiska MATE
 Summary(pt_BR.UTF-8):	Engrampa - gerenciador de arquivos compactados para o MATE
 Name:		engrampa
-Version:	1.8.1
-Release:	2
+Version:	1.10.0
+Release:	1
 License:	GPL v2+
 Group:		X11/Applications
-Source0:	http://pub.mate-desktop.org/releases/1.8/%{name}-%{version}.tar.xz
-# Source0-md5:	933ba9d4bdac0c7ac53a57a6e6e11300
+Source0:	http://pub.mate-desktop.org/releases/1.10/%{name}-%{version}.tar.xz
+# Source0-md5:	4e84853791509ca00bd62bd22197d2d0
 URL:		http://mate-desktop.org/
 BuildRequires:	autoconf >= 2.61
 BuildRequires:	automake >= 1:1.9
 %{?with_caja:BuildRequires:	caja-devel >= 1.1.0}
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	gettext-tools >= 0.10.40
-BuildRequires:	glib2-devel >= 1:2.26.0
-%{!?with_gtk3:BuildRequires:	gtk+2-devel >= 2:2.22.0}
-%{?with_gtk3:BuildRequires:	gtk+3-devel >= 3.0.0}
+BuildRequires:	glib2-devel >= 1:2.32.0
+%{!?with_gtk3:BuildRequires:	gtk+2-devel >= 2:2.24.0}
+%{?with_gtk3:BuildRequires:	gtk+3-devel >= 3.0.2}
 BuildRequires:	intltool >= 0.35.0
 BuildRequires:	json-glib-devel >= 0.14.0
 BuildRequires:	libtool >= 1:1.4.3
@@ -35,13 +35,14 @@ BuildRequires:	tar >= 1:1.22
 # libegg
 BuildRequires:	xorg-lib-libSM-devel
 BuildRequires:	xz
+BuildRequires:	yelp-tools
 Requires(post,postun):	desktop-file-utils
 Requires(post,postun):	gtk-update-icon-cache
 Requires(post,postun):	hicolor-icon-theme
 Requires(post,postun):	scrollkeeper
-Requires:	glib2 >= 1:2.26.0
-%{!?with_gtk3:Requires:	gtk+2 >= 2:2.22.0}
-%{?with_gtk3:Requires:	gtk+3 >= 3.0.0}
+Requires:	glib2 >= 1:2.32.0
+%{!?with_gtk3:Requires:	gtk+2 >= 2:2.24.0}
+%{?with_gtk3:Requires:	gtk+3 >= 3.0.2}
 Requires:	json-glib >= 0.14.0
 Suggests:	bzip2
 Suggests:	gzip
@@ -142,10 +143,13 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog MAINTAINERS NEWS README TODO
 %attr(755,root,root) %{_bindir}/engrampa
+%attr(755,root,root) %{_libexecdir}/engrampa-server
 %dir %{_libdir}/engrampa
 %attr(755,root,root) %{_libdir}/engrampa/isoinfo.sh
 %attr(755,root,root) %{_libdir}/engrampa/rpm2cpio
 %{_datadir}/engrampa
+%{_datadir}/appdata/engrampa.appdata.xml
+%{_datadir}/dbus-1/services/org.mate.Engrampa.service
 %{_datadir}/glib-2.0/schemas/org.mate.engrampa.gschema.xml
 %{_desktopdir}/engrampa.desktop
 %{_iconsdir}/hicolor/*/apps/engrampa.*
@@ -155,4 +159,5 @@ rm -rf $RPM_BUILD_ROOT
 %files -n caja-extension-engrampa
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/caja/extensions-2.0/libcaja-engrampa.so
+%{_datadir}/caja/extensions/libcaja-engrampa.caja-extension
 %endif
