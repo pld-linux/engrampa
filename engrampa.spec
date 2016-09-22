@@ -1,18 +1,17 @@
 #
 # Conditional build:
 %bcond_without	caja	# Caja support
-%bcond_with	gtk3	# use GTK+ 3.x instead of 2.x
 #
 Summary:	Engrampa - an archive manager for MATE
 Summary(pl.UTF-8):	Engrampa - zarządca archiwów dla środowiska MATE
 Summary(pt_BR.UTF-8):	Engrampa - gerenciador de arquivos compactados para o MATE
 Name:		engrampa
-Version:	1.14.1
+Version:	1.16.0
 Release:	1
 License:	GPL v2+
 Group:		X11/Applications
-Source0:	http://pub.mate-desktop.org/releases/1.14/%{name}-%{version}.tar.xz
-# Source0-md5:	387d47d7321f8ab79e41e041d357c887
+Source0:	http://pub.mate-desktop.org/releases/1.16/%{name}-%{version}.tar.xz
+# Source0-md5:	107c73ad44e7757e7ecdd389a5818a4e
 URL:		http://mate-desktop.org/
 BuildRequires:	autoconf >= 2.61
 BuildRequires:	automake >= 1:1.9
@@ -20,8 +19,7 @@ BuildRequires:	automake >= 1:1.9
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	gettext-tools >= 0.10.40
 BuildRequires:	glib2-devel >= 1:2.32.0
-%{!?with_gtk3:BuildRequires:	gtk+2-devel >= 2:2.24.0}
-%{?with_gtk3:BuildRequires:	gtk+3-devel >= 3.0.2}
+BuildRequires:	gtk+3-devel >= 3.14.0
 BuildRequires:	intltool >= 0.50.1
 BuildRequires:	json-glib-devel >= 0.14.0
 BuildRequires:	libtool >= 1:1.4.3
@@ -41,8 +39,7 @@ Requires(post,postun):	gtk-update-icon-cache
 Requires(post,postun):	hicolor-icon-theme
 Requires(post,postun):	scrollkeeper
 Requires:	glib2 >= 1:2.32.0
-%{!?with_gtk3:Requires:	gtk+2 >= 2:2.24.0}
-%{?with_gtk3:Requires:	gtk+3 >= 3.0.2}
+Requires:	gtk+3 >= 3.14.0
 Requires:	json-glib >= 0.14.0
 Suggests:	bzip2
 Suggests:	gzip
@@ -103,8 +100,7 @@ Rozszerzenie Engrampa (zarządca archiwów) dla zarządcy plików Caja.
 %configure \
 	%{!?with_caja:--disable-caja-actions} \
 	--disable-silent-rules \
-	--disable-static \
-	%{?with_gtk3:--with-gtk=3.0}
+	--disable-static
 
 %{__make}
 
@@ -140,7 +136,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f engrampa.lang
 %defattr(644,root,root,755)
-%doc AUTHORS ChangeLog MAINTAINERS NEWS README TODO
+%doc AUTHORS ChangeLog NEWS README
 %attr(755,root,root) %{_bindir}/engrampa
 %attr(755,root,root) %{_libexecdir}/engrampa-server
 %dir %{_libdir}/engrampa
