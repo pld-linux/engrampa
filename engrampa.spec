@@ -6,16 +6,16 @@ Summary:	Engrampa - an archive manager for MATE
 Summary(pl.UTF-8):	Engrampa - zarządca archiwów dla środowiska MATE
 Summary(pt_BR.UTF-8):	Engrampa - gerenciador de arquivos compactados para o MATE
 Name:		engrampa
-Version:	1.16.0
+Version:	1.18.0
 Release:	1
 License:	GPL v2+
 Group:		X11/Applications
-Source0:	http://pub.mate-desktop.org/releases/1.16/%{name}-%{version}.tar.xz
-# Source0-md5:	107c73ad44e7757e7ecdd389a5818a4e
+Source0:	http://pub.mate-desktop.org/releases/1.18/%{name}-%{version}.tar.xz
+# Source0-md5:	3877880d0fb68e1502ee705dbfd544c9
 URL:		http://mate-desktop.org/
 BuildRequires:	autoconf >= 2.61
 BuildRequires:	automake >= 1:1.9
-%{?with_caja:BuildRequires:	caja-devel >= 1.1.0}
+%{?with_caja:BuildRequires:	caja-devel >= 1.17.1}
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	gettext-tools >= 0.10.40
 BuildRequires:	glib2-devel >= 1:2.32.0
@@ -78,7 +78,7 @@ Summary:	Engrampa (archive manager) extension for Caja (MATE file manager)
 Summary(pl.UTF-8):	Rozszerzenie Engrampa (zarządca archiwów) dla zarządcy plików Caja
 Group:		X11/Applications
 Requires:	%{name} = %{version}-%{release}
-Requires:	caja >= 1.1.0
+Requires:	caja >= 1.17.1
 Obsoletes:	mate-file-manager-extension-engrampa
 
 %description -n caja-extension-engrampa
@@ -114,10 +114,8 @@ rm -rf $RPM_BUILD_ROOT
 
 # just a copy of ur
 %{__rm} -r $RPM_BUILD_ROOT%{_datadir}/locale/ur_PK
-# update naming convention
-%{__mv} $RPM_BUILD_ROOT%{_datadir}/locale/{sr@ije,sr@ijekavian}
 
-%{__rm} -r $RPM_BUILD_ROOT%{_datadir}/locale/{frp,jv}
+%{__rm} -r $RPM_BUILD_ROOT%{_datadir}/locale/{frp,ku_IQ,jv,pms}
 
 %find_lang engrampa --with-mate
 
