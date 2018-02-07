@@ -6,20 +6,20 @@ Summary:	Engrampa - an archive manager for MATE
 Summary(pl.UTF-8):	Engrampa - zarządca archiwów dla środowiska MATE
 Summary(pt_BR.UTF-8):	Engrampa - gerenciador de arquivos compactados para o MATE
 Name:		engrampa
-Version:	1.18.3
+Version:	1.20.0
 Release:	1
 License:	GPL v2+
 Group:		X11/Applications
-Source0:	http://pub.mate-desktop.org/releases/1.18/%{name}-%{version}.tar.xz
-# Source0-md5:	324300e27eaab50ee4a08d64a3774851
+Source0:	http://pub.mate-desktop.org/releases/1.20/%{name}-%{version}.tar.xz
+# Source0-md5:	677c14eaca9be4232e49dbd99dc97b73
 URL:		http://mate-desktop.org/
 BuildRequires:	autoconf >= 2.61
 BuildRequires:	automake >= 1:1.9
 %{?with_caja:BuildRequires:	caja-devel >= 1.17.1}
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	gettext-tools >= 0.10.40
-BuildRequires:	glib2-devel >= 1:2.32.0
-BuildRequires:	gtk+3-devel >= 3.14.0
+BuildRequires:	glib2-devel >= 1:2.50.0
+BuildRequires:	gtk+3-devel >= 3.22.0
 BuildRequires:	intltool >= 0.50.1
 BuildRequires:	json-glib-devel >= 0.14.0
 BuildRequires:	libtool >= 1:1.4.3
@@ -38,8 +38,8 @@ Requires(post,postun):	desktop-file-utils
 Requires(post,postun):	gtk-update-icon-cache
 Requires(post,postun):	hicolor-icon-theme
 Requires(post,postun):	scrollkeeper
-Requires:	glib2 >= 1:2.32.0
-Requires:	gtk+3 >= 3.14.0
+Requires:	glib2 >= 1:2.50.0
+Requires:	gtk+3 >= 3.22.0
 Requires:	json-glib >= 0.14.0
 Suggests:	bzip2
 Suggests:	gzip
@@ -137,9 +137,9 @@ rm -rf $RPM_BUILD_ROOT
 %doc AUTHORS ChangeLog NEWS README
 %attr(755,root,root) %{_bindir}/engrampa
 %attr(755,root,root) %{_libexecdir}/engrampa-server
-%dir %{_libdir}/engrampa
-%attr(755,root,root) %{_libdir}/engrampa/isoinfo.sh
-%attr(755,root,root) %{_libdir}/engrampa/rpm2cpio
+%dir %{_libexecdir}/engrampa
+%attr(755,root,root) %{_libexecdir}/engrampa/isoinfo.sh
+%attr(755,root,root) %{_libexecdir}/engrampa/rpm2cpio
 %{_datadir}/engrampa
 %{_datadir}/appdata/engrampa.appdata.xml
 %{_datadir}/dbus-1/services/org.mate.Engrampa.service
