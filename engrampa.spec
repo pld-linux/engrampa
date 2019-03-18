@@ -6,12 +6,12 @@ Summary:	Engrampa - an archive manager for MATE
 Summary(pl.UTF-8):	Engrampa - zarządca archiwów dla środowiska MATE
 Summary(pt_BR.UTF-8):	Engrampa - gerenciador de arquivos compactados para o MATE
 Name:		engrampa
-Version:	1.20.2
+Version:	1.22.0
 Release:	1
 License:	GPL v2+
 Group:		X11/Applications
-Source0:	http://pub.mate-desktop.org/releases/1.20/%{name}-%{version}.tar.xz
-# Source0-md5:	5390da4f78f3eb54b516bffee77718ee
+Source0:	http://pub.mate-desktop.org/releases/1.22/%{name}-%{version}.tar.xz
+# Source0-md5:	abbcf2da5be41c9c0dac0b483d6d011a
 URL:		http://mate-desktop.org/
 BuildRequires:	autoconf >= 2.61
 BuildRequires:	automake >= 1:1.9
@@ -141,7 +141,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libexecdir}/engrampa/isoinfo.sh
 %attr(755,root,root) %{_libexecdir}/engrampa/rpm2cpio
 %{_datadir}/engrampa
-%{_datadir}/appdata/engrampa.appdata.xml
+%{_datadir}/metainfo/engrampa.appdata.xml
 %{_datadir}/dbus-1/services/org.mate.Engrampa.service
 %{_datadir}/glib-2.0/schemas/org.mate.engrampa.gschema.xml
 %{_desktopdir}/engrampa.desktop
