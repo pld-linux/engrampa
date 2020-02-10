@@ -6,21 +6,20 @@ Summary:	Engrampa - an archive manager for MATE
 Summary(pl.UTF-8):	Engrampa - zarządca archiwów dla środowiska MATE
 Summary(pt_BR.UTF-8):	Engrampa - gerenciador de arquivos compactados para o MATE
 Name:		engrampa
-Version:	1.22.3
+Version:	1.24.0
 Release:	1
 License:	GPL v2+
 Group:		X11/Applications
-Source0:	http://pub.mate-desktop.org/releases/1.22/%{name}-%{version}.tar.xz
-# Source0-md5:	ad4aff42b8c54c8d3999eeaa0d158793
+Source0:	http://pub.mate-desktop.org/releases/1.24/%{name}-%{version}.tar.xz
+# Source0-md5:	eab3afcfbf6cf883ae3f501e7f03f3d1
 URL:		http://mate-desktop.org/
 BuildRequires:	autoconf >= 2.61
 BuildRequires:	automake >= 1:1.9
 %{?with_caja:BuildRequires:	caja-devel >= 1.17.1}
 BuildRequires:	docbook-dtd412-xml
-BuildRequires:	gettext-tools >= 0.10.40
+BuildRequires:	gettext-tools >= 0.19.8
 BuildRequires:	glib2-devel >= 1:2.50.0
 BuildRequires:	gtk+3-devel >= 3.22.0
-BuildRequires:	intltool >= 0.50.1
 BuildRequires:	json-glib-devel >= 0.14.0
 BuildRequires:	libtool >= 1:1.4.3
 BuildRequires:	libxml2-progs
@@ -91,7 +90,6 @@ Rozszerzenie Engrampa (zarządca archiwów) dla zarządcy plików Caja.
 %setup -q
 
 %build
-%{__intltoolize}
 %{__libtoolize}
 %{__aclocal}
 %{__autoconf}
@@ -144,6 +142,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/dbus-1/services/org.mate.Engrampa.service
 %{_datadir}/glib-2.0/schemas/org.mate.engrampa.gschema.xml
 %{_desktopdir}/engrampa.desktop
+%{_iconsdir}/hicolor/*/actions/*-archive.png
 %{_iconsdir}/hicolor/*/apps/engrampa.*
 %{_mandir}/man1/engrampa.1*
 
