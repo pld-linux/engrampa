@@ -12,7 +12,7 @@ License:	GPL v2+
 Group:		X11/Applications
 Source0:	https://pub.mate-desktop.org/releases/1.26/%{name}-%{version}.tar.xz
 # Source0-md5:	4e06e88495515b6d2a67852e85098445
-URL:		http://mate-desktop.org/
+URL:		https://wiki.mate-desktop.org/mate-desktop/applications/engrampa/
 BuildRequires:	autoconf >= 2.61
 BuildRequires:	automake >= 1:1.9
 %{?with_caja:BuildRequires:	caja-devel >= 1.17.1}
@@ -26,7 +26,7 @@ BuildRequires:	libxml2-progs
 BuildRequires:	mate-common
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(find_lang) >= 1.36
-BuildRequires:	rpmbuild(macros) >= 1.311
+BuildRequires:	rpmbuild(macros) >= 1.596
 BuildRequires:	scrollkeeper
 BuildRequires:	tar >= 1:1.22
 # libegg
@@ -51,7 +51,7 @@ Suggests:	unrar
 %endif
 Suggests:	tar
 Suggests:	zip
-Obsoletes:	mate-file-archiver
+Obsoletes:	mate-file-archiver < 1.8.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -79,7 +79,7 @@ Summary(pl.UTF-8):	Rozszerzenie Engrampa (zarządca archiwów) dla zarządcy pli
 Group:		X11/Applications
 Requires:	%{name} = %{version}-%{release}
 Requires:	caja >= 1.17.1
-Obsoletes:	mate-file-manager-extension-engrampa
+Obsoletes:	mate-file-manager-extension-engrampa < 1.8.0
 
 %description -n caja-extension-engrampa
 Engrampa (archive manager) extension for Caja (MATE file manager).
@@ -111,10 +111,10 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/caja/extensions-2.0/*.la
 
-# just a copy of ur
-%{__rm} -r $RPM_BUILD_ROOT%{_datadir}/locale/ur_PK
-
-%{__rm} -r $RPM_BUILD_ROOT%{_datadir}/locale/{es_ES,frp,ie,jv,ku_IQ,pms}
+# outdated copies of es,ur
+%{__rm} -r $RPM_BUILD_ROOT%{_datadir}/locale/{es_ES,ur_PK}
+# not supported by glibc (2.34)
+%{__rm} -r $RPM_BUILD_ROOT%{_datadir}/locale/{frp,ie,jv,ku_IQ,pms}
 
 %find_lang engrampa --with-mate
 
